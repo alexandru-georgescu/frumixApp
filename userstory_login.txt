@@ -1,0 +1,50 @@
+[BASIC USER]
+As a registered user, I want to log in, so that I can access my list of trainings (past&available).
+[TEAM MANAGER]
+As a registered user, I want to log in, so that I can access the list of courses which my team is
+	interested in.
+[PROJECT MANAGER]
+As a registered user, I want to log in, so that I can access the list of requests for joining courses.
+
+POZA IN DREAPTA/STANGA + Login/Register
+
+LOGIN:
+	- username
+	- password
+	- Login
+	- Forgot password?
+	- You don't have an account? Register
+		click pe register => redirect la register page
+	
+	Given I am logged-out from the website and I am on the Sign-in page.
+	When I fill in the username and password fields with my valid credentials + click Sign-in button
+	Then I get signed in to the website, redirects me to the dashboard page (alta pentru fiecare tip 
+de user soon).
+=> BACKEND: exista contul in baza de date
+
+REGISTER:
+	- username
+	- password
+	- confirm password
+	- Already have an account? Login
+		click pe login => redirect la login page
+
+username = email: prenume.nume@trainup.com => daca nu e de forma asta: pop-up cu "Invalid username"
+	- required (nu pot avea cont fara username)
+	- nu trb sa existe in baza de date - Already have an account? => link to login page
+	- already exists in database => forgot password? => reset password
+password criteria:
+	- required (nu pot avea cont fara parola)
+	- min-length: must be at least 8 characters long
+	- invalid characters: ( ) { } " ` '
+	- at least one capital letter
+	- confirm password box required
+
+SUBMIT => redirected to login
+*confirmation email sent*
+
+	Given I am a logged-out and un-registered user and I am on the Sign-in page.
+	When I fill in the username and password fields with my invalid credentials + click Sign-in button
+	Then I get to stay on the same page, but a pop-up appears with the message "Wrong username/password"
++ "Register now".
+=> BACKEND: se verifica/adauga contul la baza de date (la register se populeaza tabela)
