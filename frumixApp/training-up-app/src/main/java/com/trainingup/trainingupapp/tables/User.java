@@ -3,27 +3,31 @@ package com.trainingup.trainingupapp.tables;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @EnableAutoConfiguration
 @Table(name="USER")
-public class UserDB {
+public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String email;
     private String type;
     private String firstName;
     private String lastName;
 
     @OneToMany
-    private List<CourseDB> courses;
+    private List<Course> courses;
 
-    public List<CourseDB> getCourses() {
+    public List<Course> getCourses() {
+        if (courses == null) {
+            return new ArrayList<Course>();
+        }
         return courses;
     }
 
-    public void setCourses(List<CourseDB> courses) {
+    public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
 

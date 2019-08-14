@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name="COURSES")
 @EnableAutoConfiguration
-public class CourseDB {
+public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
