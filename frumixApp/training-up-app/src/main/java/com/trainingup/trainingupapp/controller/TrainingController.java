@@ -1,4 +1,4 @@
-package com.trainingup.trainingupapp.service;
+package com.trainingup.trainingupapp.controller;
 
 import com.trainingup.trainingupapp.TrainingUpAppApplication;
 import com.trainingup.trainingupapp.repository.CourseRepository;
@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-/**
- * With DB implementation.
- */
 @RestController
 public class TrainingController {
 
@@ -27,18 +24,24 @@ public class TrainingController {
 
     @GetMapping("/")
     public List<User> introProject(ModelAndView model) {
-        User newUser = TrainingUpAppApplication.createUser("MIREL", "DA@GMAIL.COM", "LIVIU", "NORMAL");
-        Course newCourse = TrainingUpAppApplication.createCourse("BANANE", LocalDate.MIN, LocalDate.MAX, 10, 20);
+        User newUser = TrainingUpAppApplication.createUser("MIREL", "DA@GMAIL.COM",
+                "LIVIU", "NORMAL");
+        Course newCourse = TrainingUpAppApplication.createCourse("BANANE", LocalDate.MIN,
+                LocalDate.MAX, 20, 10);
+
+        Course newCourse2 = TrainingUpAppApplication.createCourse("BANANE2", LocalDate.MIN,
+                LocalDate.MAX, 20, 10);
 
         courseRepository.saveAndFlush(newCourse);
+        courseRepository.saveAndFlush(newCourse2);
 
         List<Course> courses = newUser.getCourses();
         courses.add(newCourse);
+        courses.add(newCourse2);
         newUser.setCourses(courses);
 
         userRepository.saveAndFlush(newUser);
         return userRepository.findAll();
     }
-
 }
 
