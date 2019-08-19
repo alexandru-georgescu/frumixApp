@@ -33,28 +33,16 @@ public class TrainingController {
     @GetMapping("/")
     public List<User> introProject(ModelAndView model) {
         User newUser = TrainingUpAppApplication.createUser("MIREL", "DA@GMAIL.COM", "LIVIU", "NORMAL");
-		/*
-		 * Course newCourse = TrainingUpAppApplication.createCourse("BANANE",
-		 * LocalDate.MIN, LocalDate.MAX, 10, 20);
-		 * 
-		 * courseRepository.saveAndFlush(newCourse);
-		 * 
-		 * List<Course> courses = newUser.getCourses(); courses.add(newCourse);
-		 * newUser.setCourses(courses)
-		 */;
+		Course newCourse = TrainingUpAppApplication.createCourse("BANANE",
+		LocalDate.MIN, LocalDate.MAX, 10, 20);
+		courseRepository.saveAndFlush(newCourse); 
+		List<Course> courses = newUser.getCourses();
+		courses.add(newCourse);
+		newUser.setCourses(courses);
 		userRepository.saveAndFlush(newUser);
 		 
         return userRepository.findAll();
     }
     
-	/*
-	 * public JsonArray bullshit() { return
-	 * Json.createArrayBuilder().add(bull("Alex", 21)).add(bull("Dani",
-	 * 32)).build(); }
-	 * 
-	 * 
-	 * public JsonObject bull(String name, int age) { return
-	 * Json.createObjectBuilder().add("name", name).add("age", age).build(); }
-	 */
 }
 

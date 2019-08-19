@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/user';
-import { UserService } from 'src/app/user-service.service';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-test-page',
