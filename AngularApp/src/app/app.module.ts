@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TestPageComponent } from './pages/test-page/test-page.component';
-import { UserService } from './user-service.service';
+import { UserService } from './services/user-service.service'
 
 
 
