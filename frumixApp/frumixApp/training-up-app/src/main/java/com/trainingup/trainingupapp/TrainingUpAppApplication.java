@@ -14,12 +14,13 @@ public class TrainingUpAppApplication {
 		SpringApplication.run(TrainingUpAppApplication.class, args);
 	}
 
-	public static User createUser(String fname, String email, String lname, String type) {
+	public static User createUser(String fname, String email, String lname, String type, String pass) {
 		User newUser = new User();
 		newUser.setEmail(email);
 		newUser.setFirstName(fname);
 		newUser.setLastName(lname);
 		newUser.setType(type);
+		newUser.setPassword(pass);
 		return newUser;
 	}
 

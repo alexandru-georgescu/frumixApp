@@ -1,6 +1,8 @@
 package com.trainingup.trainingupapp.tables;
 
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.cglib.beans.BeanMap;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class User {
     private String type;
     private String firstName;
     private String lastName;
+    private String password;
 
     public long getId() {
         return id;
@@ -29,6 +32,14 @@ public class User {
 
     @OneToMany
     private List<Course> courses;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public List<Course> getCourses() {
         if (courses == null) {
