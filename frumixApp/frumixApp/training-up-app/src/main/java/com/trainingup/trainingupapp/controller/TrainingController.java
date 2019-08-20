@@ -37,6 +37,14 @@ public class TrainingController {
                           @RequestParam("password") String password,
                           ModelAndView model) {
 
+        String emailToLowerCase = email.toLowerCase();
+
+        if (!email.contains("@trainup.com"))
+            return null;
+
+        if(email.equals("") || password.equals(""))
+            return null;
+
         Optional<User> user = userRepository.findAll().stream().filter(u -> {
             if (u.getEmail().equals(email) && u.getPassword().equals(password)) {
                 return true;
