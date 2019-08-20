@@ -3,6 +3,8 @@ package com.trainingup.trainingupapp.controller;
 
 import com.trainingup.trainingupapp.repository.CourseRepository;
 import com.trainingup.trainingupapp.repository.UserRepository;
+import com.trainingup.trainingupapp.service.course_service.CourseService;
+import com.trainingup.trainingupapp.service.user_service.UserService;
 import com.trainingup.trainingupapp.tables.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +20,14 @@ import java.util.Optional;
 public class TrainingController {
 
     @Autowired
-    private CourseRepository courseRepository;
+    private CourseService courseService;
+
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping("/")
     public List<User> introProject(ModelAndView model) {
-        return userRepository.findAll();
+        return userService.findAll();
     }
 
     @GetMapping("/login")
@@ -40,7 +43,7 @@ public class TrainingController {
         if(email.equals("") || password.equals(""))
             return null;
 
-        Optional<User> user = userRepository.findAll().stream().filter(u -> {
+        Optional<User> user = userService.findAll().stream().filter(u -> {
             if (u.getEmail().equals(email) && u.getPassword().equals(password)) {
                 return true;
             }
@@ -51,13 +54,13 @@ public class TrainingController {
 
     @GetMapping("/register")
     public User registerPage(@RequestParam("email") String email,
-                             @RequestParam("firstName") String fname,
-                             @RequestParam("lastName") String lname,
+                             @RequestParam("firstName") String firstName,
+                             @RequestParam("lastName") String lastName,
                              @RequestParam("password") String password,
                              @RequestParam("confPassword") String confPassword,
                              ModelAndView model) {
 
-        if (fname.equals("") || lname.equals("") || password.equals("")) {
+        if (firstName.equals("") || lastName.equals("") || password.equals("")) {
             return null;
         }
 
@@ -66,15 +69,7 @@ public class TrainingController {
         }
 
 
-        User newUser = new User();
-        newUser.setEmail(email);
-        newUser.setType("user");
-        newUser.setFirstName(fname);
-        newUser.setLastName(lname);
-        newUser.setPassword(password);
-
-        userRepository.saveAndFlush(newUser);
-        return newUser;
+        return userService.addUser(email, firstName, lastName, password, "user");
     }
 
 }
