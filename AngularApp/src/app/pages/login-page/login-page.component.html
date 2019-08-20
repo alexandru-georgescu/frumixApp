@@ -1,34 +1,18 @@
-<<<<<<< HEAD
 <form id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
     <div>
         <label> Email </label>
-        <input type="text" placeholder="username" formControlName="email" autocomplete="username"/>
+        <input type="text" placeholder="email" formControlName="email" autocomplete="email"/>
+        <span *ngIf="submitted && controls.email.errors?.required"> Email is required. </span>
     </div>
 
     <div>
         <label> Password </label>
         <input type="password" placeholder="password" formControlName="password" autocomplete="current-password"/>
+        <span *ngIf="submitted && controls.password.errors?.required"> Password is required. </span>
     </div>
-
 
     <button type="submit">Login</button>
+    <span *ngIf="wrongInput">Wrong email or password. Try again!</span>
 
-=======
-<form id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
-    <div>
-        <label> Email </label>
-        <input type="text" placeholder="username" formControlName="email" autocomplete="username"/>
-    </div>
-
-    <div>
-        <label> Password </label>
-        <input type="password" placeholder="password" formControlName="password" autocomplete="current-password"/>
-    </div>
-
-
-    <button type="submit">Login</button>
-
->>>>>>> 8a01c0068fad5d60e0dfcbb4addbf56796df9107
 </form>
