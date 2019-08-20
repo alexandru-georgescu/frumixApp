@@ -15,7 +15,7 @@ export class TestPageComponent implements OnInit {
   }
  
   ngOnInit() {
-    this.userService.findAll().subscribe(data => {
+    this.userService.findAll('http://localhost:8080/').subscribe(data => {
       this.users = data;
     });
   }
