@@ -70,6 +70,24 @@ public class TrainingController {
             return null;
         }
 
+        ///Index of the @ in the string
+        int atIndex = email.indexOf("@");
+
+
+        ///If the email the user has entered has more than just a @ return null
+        if (email.lastIndexOf("@") != atIndex)
+            return null;
+
+        ///String before the @ in an email
+        String beforeAt = email.substring(0, atIndex);
+
+        ///The body of the email before the @ should containt a "."
+        if (!beforeAt.contains("."))
+            return null;
+
+        ///If the body of the email before the @ contains anything else than letters and the "." return null
+        if (!beforeAt.matches(".*[a-zA-Z.]+."))
+            return null;
 
         User newUser = new User();
         newUser.setEmail(email);
