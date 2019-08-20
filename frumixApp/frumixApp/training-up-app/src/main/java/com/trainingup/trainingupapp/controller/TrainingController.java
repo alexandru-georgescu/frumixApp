@@ -1,3 +1,4 @@
+
 package com.trainingup.trainingupapp.controller;
 
 import com.trainingup.trainingupapp.TrainingUpAppApplication;
@@ -28,23 +29,6 @@ public class TrainingController {
 
     @GetMapping("/")
     public List<User> introProject(ModelAndView model) {
-        User newUser = TrainingUpAppApplication.createUser("MIREL", "DA@GMAIL.COM",
-                "LIVIU", "NORMAL", "Mirel");
-        Course newCourse = TrainingUpAppApplication.createCourse("BANANE", LocalDate.MIN,
-                LocalDate.MAX, 20, 10);
-
-        Course newCourse2 = TrainingUpAppApplication.createCourse("BANANE2", LocalDate.MIN,
-                LocalDate.MAX, 20, 10);
-
-        courseRepository.saveAndFlush(newCourse);
-        courseRepository.saveAndFlush(newCourse2);
-
-        List<Course> courses = newUser.getCourses();
-        courses.add(newCourse);
-        courses.add(newCourse2);
-        newUser.setCourses(courses);
-
-        userRepository.saveAndFlush(newUser);
         return userRepository.findAll();
     }
 
@@ -61,4 +45,33 @@ public class TrainingController {
         }).findFirst();
         return user.orElse(null);
     }
+
+    @GetMapping("/register")
+    public User registerPage(@RequestParam("email") String email,
+                             @RequestParam("firstName") String fname,
+                             @RequestParam("lastName") String lname,
+                             @RequestParam("password") String password,
+                             @RequestParam("confPassword") String confPassword,
+                             ModelAndView model) {
+
+        if (fname.equals("") || lname.equals("") || password.equals("")) {
+            return null;
+        }
+
+        if (!email.contains("@trainup.com") || !confPassword.equals(password)) {
+            return null;
+        }
+
+
+        User newUser = new User();
+        newUser.setEmail(email);
+        newUser.setType("user");
+        newUser.setFirstName(fname);
+        newUser.setLastName(lname);
+        newUser.setPassword(password);
+
+        userRepository.saveAndFlush(newUser);
+        return newUser;
+    }
+
 }
