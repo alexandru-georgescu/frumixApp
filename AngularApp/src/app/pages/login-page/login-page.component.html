@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
     <div>
@@ -13,4 +14,21 @@
 
     <button type="submit">Login</button>
 
+=======
+<form id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <div>
+        <label> Email </label>
+        <input type="text" placeholder="username" formControlName="email" autocomplete="username"/>
+    </div>
+
+    <div>
+        <label> Password </label>
+        <input type="password" placeholder="password" formControlName="password" autocomplete="current-password"/>
+    </div>
+
+
+    <button type="submit">Login</button>
+
+>>>>>>> 8a01c0068fad5d60e0dfcbb4addbf56796df9107
 </form>

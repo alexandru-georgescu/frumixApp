@@ -7,6 +7,10 @@ import { TestPageComponent } from './pages/test-page/test-page.component';
 import { UserService } from './services/user-service.service';
 import { LoginPageComponent } from './pages/login-page/login-page.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+<<<<<<< HEAD
+=======
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+>>>>>>> 8a01c0068fad5d60e0dfcbb4addbf56796df9107
 
 
 
@@ -15,7 +19,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     TestPageComponent,
+<<<<<<< HEAD
     LoginPageComponent
+=======
+    LoginPageComponent,
+    RegisterPageComponent
+>>>>>>> 8a01c0068fad5d60e0dfcbb4addbf56796df9107
   ],
   imports: [
     BrowserModule,

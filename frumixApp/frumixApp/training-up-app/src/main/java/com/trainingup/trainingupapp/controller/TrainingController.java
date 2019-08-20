@@ -1,3 +1,4 @@
+
 package com.trainingup.trainingupapp.controller;
 
 import com.trainingup.trainingupapp.repository.CourseRepository;
