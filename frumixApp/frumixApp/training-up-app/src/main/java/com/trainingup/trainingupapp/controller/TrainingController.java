@@ -1,21 +1,16 @@
 package com.trainingup.trainingupapp.controller;
 
-import com.trainingup.trainingupapp.TrainingUpAppApplication;
 import com.trainingup.trainingupapp.repository.CourseRepository;
 import com.trainingup.trainingupapp.repository.UserRepository;
-import com.trainingup.trainingupapp.tables.Course;
 import com.trainingup.trainingupapp.tables.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
